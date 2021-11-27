@@ -19,10 +19,22 @@
     border: 1px solid black;
 }
 
-.cell_topleft {
+.cell_shaded {
+    background-color: rgba(0, 0, 0, 0.4);  
+}
 
+.cell_topleft {
+    border-top-left-radius: 5px;
 }
 
 .cell_topright {
-    
+    border-top-right-radius: 5px;
+}
+
+.cell_bottomleft {
+    border-bottom-left-radius: 5px;
+}
+
+.cell_bottomright {
+    border-bottom-right-radius: 5px;
 }
