@@ -11,28 +11,25 @@ import styles from './Board.module.css';
 
 export const Board = () => {
     return (
-        <div className={styles.board_underlay}>
-            <div className={styles.board_container}>
-                {board.map((row, r_idx) => (
-                    <div key={'row_' + r_idx} className={styles.row_container}>
-                        {row.map((_, c_idx) => {
-                        const cornerMap = checkIfCorner(r_idx, c_idx, board.length-1);
-                        return (
-                            <div key={'cell_' + c_idx}
-                                className={`
-                                    ${styles.cell} 
-                                    ${cornerMap ?? null}
-                                `}
-                            />
-                        )})}
-                    </div>
-                ))}
-            </div>
+        <div className={styles.board_container}>
+            {board.map((row, r_idx) => (
+                <div key={'row_' + r_idx} className={styles.row_container}>
+                    {row.map((_, c_idx) => (
+                        <div key={'cell_' + c_idx}
+                            className={`
+                                ${styles.cell} 
+                                ${applyCornerStyles(r_idx, c_idx, board.length-1)}
+                                ${applyShadedCellStyles(r_idx, c_idx)}
+                            `}
+                        />
+                    ))}
+                </div>
+            ))}
         </div>
     )
 }
 
-function checkIfCorner(r_idx: number, c_idx: number, lastIdx: number) {
+function applyCornerStyles(r_idx: number, c_idx: number, lastIdx: number) {
     if (r_idx === 0) {
         if (c_idx === 0) {
             return styles.cell_topleft;
@@ -51,5 +48,24 @@ function checkIfCorner(r_idx: number, c_idx: number, lastIdx: number) {
         }
     }
 
-    return false;
+    return null;
+}
+
+function applyShadedCellStyles(r_idx: number, c_idx: number) {
+    if (r_idx % 2 === 0) {
+        // shade odd  cells
+        if (c_idx % 2 === 0) {
+            return null;
+        } else {
+            return styles.cell_shaded;
+        }
+    } else {
+        // shade even cells
+        if (c_idx % 2 === 0) {
+            return styles.cell_shaded;
+        } else {
+            return null;
+        }
+    }
+
 }
