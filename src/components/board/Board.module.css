@@ -1,0 +1,28 @@
+.board_container {
+    position: absolute;
+}
+
+.board_underlay {
+    height: 240px;
+    width: 240px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.row_container {
+    display: flex;
+}
+
+.cell {
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+}
+
+.cell_topleft {
+
+}
+
+.cell_topright {
+    
+}
