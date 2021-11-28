@@ -1,5 +1,7 @@
 .board_container {
     position: absolute;
+    box-shadow: -5px -5px grey;
+    border-radius: 5px;
 }
 
 /* .board_underlay {
