@@ -1,3 +1,9 @@
+# Project Info
+Just a checkers board styled out of elements, or chess. w/e
+
+![image](https://user-images.githubusercontent.com/55858162/143718798-91965d8b-6d30-4425-b634-c7c356c2d2d4.png)
+
+# CRA - Info
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
