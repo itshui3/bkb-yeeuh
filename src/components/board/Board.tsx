@@ -1,5 +1,7 @@
 // external deps
 import React from 'react';
+// app deps
+import { Placement } from '../../app/useSelectPieces';
 
 // local deps
 import { board } from './boardData';
@@ -9,7 +11,16 @@ import styles from './Board.module.css';
 // bottomleft [length-1, 0]
 // bottomright [length-1, length-1]
 
-export const Board = () => {
+interface BoardProps {
+    selectCell: (row: number, col: number) => void;
+    placedPcs: Placement;
+}
+export const Board: React.FC<BoardProps> = ({
+    selectCell,
+    placedPcs
+}) => {
+    console.log('placedPcs: ', placedPcs);
+    const renderPcsIconInOccupiedCells = buildRenderPiecesInOccupiedCells(placedPcs);
     return (
         <div className={styles.board_container}>
             {board.map((row, r_idx) => (
@@ -21,7 +32,10 @@ export const Board = () => {
                                 ${applyCornerStyles(r_idx, c_idx, board.length-1)}
                                 ${applyShadedCellStyles(r_idx, c_idx)}
                             `}
-                        />
+                            onClick={() => selectCell(r_idx, c_idx)}
+                        >
+                        {renderPcsIconInOccupiedCells(r_idx, c_idx)}
+                        </div>
                     ))}
                 </div>
             ))}
@@ -68,4 +82,15 @@ function applyShadedCellStyles(r_idx: number, c_idx: number) {
         }
     }
 
+}
+
+function buildRenderPiecesInOccupiedCells(placedPcs: Placement) {
+    return (row: number, cell: number) => {
+        const stringifiedPos = row + '_' + cell;
+        if (stringifiedPos in placedPcs) {
+            return placedPcs[stringifiedPos].readableIcon;
+        } else {
+            return '';
+        }
+    }
 }
